@@ -1,6 +1,8 @@
 #ifndef CONFINED_LOGGER_HPP
 #define CONFINED_LOGGER_HPP
 
+#include <fstream>
+
 namespace log {
 
     enum Severity {
@@ -14,13 +16,17 @@ using log::Severity;
 
 class Logger {
 public:
-    Logger();
-    explicit Logger(const char* path);
+    static void setFile(const char* path);
 
-    void log(Severity severity, const char* message);
-    void logi(const char* message);
-    void logw(const char* message);
-    void loge(const char* message);
+    static void log(Severity severity, const char* message);
+    static void logi(const char* message);
+    static void logw(const char* message);
+    static void loge(const char* message);
+
+    static void close();
+
+private:
+    static std::ofstream* file;
 };
 
 #endif //CONFINED_LOGGER_HPP
