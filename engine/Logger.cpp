@@ -2,9 +2,9 @@
 
 #include "Logger.hpp"
 
-using log::Severity::INFO;
-using log::Severity::WARNING;
-using log::Severity::ERROR;
+using Severity::INFO;
+using Severity::WARNING;
+using Severity::ERROR;
 
 std::ofstream* Logger::file;
 
@@ -51,9 +51,21 @@ void Logger::log(Severity severity, const char* message){
     }
 }
 
+void Logger::log(Severity severity, const std::string& message){
+
+    log(severity, message.c_str());
+
+}
+
 void Logger::logi(const char* message){
 
     log(INFO, message);
+
+}
+
+void Logger::logi(const std::string& message){
+
+    logi(message.c_str());
 
 }
 
@@ -63,9 +75,21 @@ void Logger::logw(const char* message){
 
 }
 
+void Logger::logw(const std::string& message){
+
+    logw(message.c_str());
+
+}
+
 void Logger::loge(const char* message){
 
     log(ERROR, message);
+
+}
+
+void Logger::loge(const std::string& message){
+
+    loge(message.c_str());
 
 }
 

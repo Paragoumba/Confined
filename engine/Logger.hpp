@@ -19,9 +19,13 @@ public:
     static void setFile(const char* path);
 
     static void log(Severity severity, const char* message);
+    static void log(Severity severity, const std::string& message);
     static void logi(const char* message);
+    static void logi(const std::string& message);
     static void logw(const char* message);
+    static void logw(const std::string& message);
     static void loge(const char* message);
+    static void loge(const std::string& message);
 
     static void close();
 
