@@ -3,7 +3,7 @@
 
 #include <fstream>
 
-namespace log {
+namespace logger {
 
     enum Severity {
         INFO = 1,
@@ -12,7 +12,7 @@ namespace log {
     };
 }
 
-using log::Severity;
+using logger::Severity;
 
 class Logger {
 public:

@@ -2,6 +2,11 @@
 
 #include "Logger.hpp"
 
+// (May 03 19:39:18) \0
+// \------------------/
+// 19 chars
+#define TIME_LENGTH 19
+
 using Severity::INFO;
 using Severity::WARNING;
 using Severity::ERROR;
@@ -23,6 +28,18 @@ void Logger::setFile(const char* path){
 void Logger::log(Severity severity, const char* message){
 
     std::string s;
+
+    {
+
+        // (May 20 17:20:01) [INFO] Test
+        char timeStr[TIME_LENGTH];
+        time_t rawTime;
+
+        time(&rawTime);
+        strftime(timeStr, TIME_LENGTH, "(%b %d %T) ", localtime(&rawTime));
+        s += timeStr;
+
+    }
 
     s += '[';
     s += (severity == INFO ? "INFO" : severity == WARNING ? "WARN" : severity == ERROR ? "ERRO" : "UNKN");
