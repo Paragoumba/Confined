@@ -21,7 +21,7 @@ void Logger::setFile(const char* path){
 
     }
 
-    file = new std::ofstream(path, std::ofstream::out);
+    file = new std::ofstream(path, std::ofstream::app);
 
 }
 
