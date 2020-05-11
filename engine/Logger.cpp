@@ -2,7 +2,7 @@
 
 #include "Logger.hpp"
 
-// (May 03 19:39:18) \0
+// May 03 19:39:18 - \0
 // \------------------/
 // 19 chars
 #define TIME_LENGTH 19
@@ -31,12 +31,12 @@ void Logger::log(Severity severity, const char* message){
 
     {
 
-        // (May 20 17:20:01) [INFO] Test
+        // May 20 17:20:01 - [INFO] Test
         char timeStr[TIME_LENGTH];
         time_t rawTime;
 
         time(&rawTime);
-        strftime(timeStr, TIME_LENGTH, "(%b %d %T) ", localtime(&rawTime));
+        strftime(timeStr, TIME_LENGTH, "%b %d %T - ", localtime(&rawTime));
         s += timeStr;
 
     }
