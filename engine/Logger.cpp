@@ -4,7 +4,7 @@
 
 // May 03 19:39:18 - \0
 // \------------------/
-// 19 chars
+//       19 chars
 #define TIME_LENGTH 19
 
 using Severity::INFO;
@@ -64,6 +64,7 @@ void Logger::log(Severity severity, const char* message){
     if (file != nullptr){
 
         *file << s;
+        file->flush();
 
     }
 }
