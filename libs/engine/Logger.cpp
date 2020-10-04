@@ -7,6 +7,8 @@
 //       19 chars
 #define TIME_LENGTH 19
 
+using logger::Logger;
+using logger::Severity;
 using Severity::INFO;
 using Severity::WARNING;
 using Severity::ERROR;

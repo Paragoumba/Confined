@@ -3,4 +3,5 @@ project(Confined)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Confined main.cpp engine/Window.cpp engine/GlfwWindow.cpp engine/Logger.cpp)
+add_subdirectory("${PROJECT_SOURCE_DIR}/game")
+add_subdirectory("${PROJECT_SOURCE_DIR}/libs")
