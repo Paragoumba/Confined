@@ -9,10 +9,11 @@ using logger::Logger;
 
 GlfwWindow::GlfwWindow(const char* title, int width, int height) : Window(width, height){
 
+    Logger& logger = Logger::getLogger();
+
     if (title == nullptr){
 
-        Logger::logw("Argument title is null in Window constructor.");
-        Logger::logw("Using default value (\"\") instead.");
+        logger.logw("Argument title is null in Window constructor.\nUsing default value (\"\") instead.");
         title = "";
 
     }

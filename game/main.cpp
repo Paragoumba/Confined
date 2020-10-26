@@ -8,13 +8,13 @@ using logger::Logger;
 
 int main(){
 
+    Logger& logger = Logger::getLogger();
+
 #ifdef NDEBUG
 
-    Logger::setFile("debug.log");
+    logger.setFile("debug.log");
 
 #endif
-
-    int status = EXIT_SUCCESS;
 
     try {
 
@@ -22,22 +22,21 @@ int main(){
 
         engine.loop();
 
-        Logger::logi("Terminating.");
+        logger.logi("Terminating.");
+        logger << logger::Severity::INFO << "Terminating.";
 
     } catch (const std::exception& e){
 
-        Logger::loge(e.what());
-        status =  EXIT_FAILURE;
+        logger.loge(e.what());
+        return EXIT_FAILURE;
 
     } catch (...){
 
-        Logger::loge("Unrecoverable error. Exiting.");
-        status =  EXIT_FAILURE;
+        logger.loge("Unrecoverable error. Exiting.");
+        return EXIT_FAILURE;
 
     }
 
-    Logger::close();
-
-    return status;
+    return EXIT_SUCCESS;
 
 }

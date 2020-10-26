@@ -13,17 +13,17 @@ using Severity::INFO;
 using Severity::WARNING;
 using Severity::ERROR;
 
-std::ofstream* Logger::file;
+std::unique_ptr<Logger> Logger::logger;
 
 void Logger::setFile(const char* path){
 
-    if (file != nullptr){
+    if (mFile != nullptr){
 
-        file->close();
+        mFile->close();
 
     }
 
-    file = new std::ofstream(path, std::ofstream::app);
+    mFile = std::make_unique<std::ofstream>(path, std::ofstream::app);
 
 }
 
@@ -63,10 +63,10 @@ void Logger::log(Severity severity, const char* message){
             break;
     }
 
-    if (file != nullptr){
+    if (mFile != nullptr){
 
-        *file << s;
-        file->flush();
+        *mFile << s;
+        mFile->flush();
 
     }
 }
@@ -113,12 +113,47 @@ void Logger::loge(const std::string& message){
 
 }
 
-void Logger::close(){
+Logger& Logger::getLogger(){
 
-    if (file != nullptr){
+    if (logger == nullptr){
 
-        file->close();
-        delete file;
+        logger = std::make_unique<Logger>();
+
+    }
+
+    return *logger;
+
+}
+
+Logger& Logger::operator<<(Severity s){
+
+    mSeverity = s;
+
+    return *this;
+
+}
+
+Logger& Logger::operator<<(const char* message){
+
+    log(mSeverity, message);
+
+    return *this;
+
+}
+
+Logger& Logger::operator<<(const std::string& message){
+
+    log(mSeverity, message);
+
+    return *this;
+
+}
+
+Logger::~Logger(){
+
+    if (mFile != nullptr){
+
+        mFile->close();
 
     }
 }

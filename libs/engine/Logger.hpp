@@ -2,6 +2,7 @@
 #define CONFINED_LOGGER_HPP
 
 #include <fstream>
+#include <memory>
 
 namespace logger {
 
@@ -13,21 +14,30 @@ namespace logger {
 
     class Logger {
     public:
-        static void setFile(const char* path);
+        static Logger& getLogger();
 
-        static void log(Severity severity, const char* message);
-        static void log(Severity severity, const std::string& message);
-        static void logi(const char* message);
-        static void logi(const std::string& message);
-        static void logw(const char* message);
-        static void logw(const std::string& message);
-        static void loge(const char* message);
-        static void loge(const std::string& message);
+        void setFile(const char* path);
 
-        static void close();
+        void log(Severity severity, const char* message);
+        void log(Severity severity, const std::string& message);
+        void logi(const char* message);
+        void logi(const std::string& message);
+        void logw(const char* message);
+        void logw(const std::string& message);
+        void loge(const char* message);
+        void loge(const std::string& message);
+
+        Logger& operator<<(Severity s);
+        Logger& operator<<(const char* message);
+        Logger& operator<<(const std::string& message);
+
+        ~Logger();
 
     private:
-        static std::ofstream* file;
+        static std::unique_ptr<Logger> logger;
+
+        Severity mSeverity = Severity::ERROR;
+        std::unique_ptr<std::ofstream> mFile;
     };
 }
 
