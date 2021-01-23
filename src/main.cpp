@@ -3,6 +3,7 @@
 #include "Logger.hpp"
 #include "exceptions/Exception.hpp"
 #include "Engine.hpp"
+#include "GameLogic.hpp"
 
 using logger::Logger;
 
@@ -18,11 +19,12 @@ int main(){
 
     try {
 
-        Engine engine;
+        std::shared_ptr<engine::GameLogic> gameLogic = GameLogicPtr(new GameLogic);
+
+        Engine engine(gameLogic);
 
         engine.loop();
 
-        logger.logi("Terminating.");
         logger << logger::Severity::INFO << "Terminating.";
 
     } catch (const std::exception& e){
