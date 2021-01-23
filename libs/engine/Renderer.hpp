@@ -1,8 +1,0 @@
-#ifndef CONFINED_RENDERER_HPP
-#define CONFINED_RENDERER_HPP
-
-class Renderer {
-
-};
-
-#endif //CONFINED_RENDERER_HPP
