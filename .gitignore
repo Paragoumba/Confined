@@ -3,3 +3,4 @@ cmake-build-release
 *.iml
 /doc
 .idea
+libs/RAMENgine
