@@ -1,1 +1,8 @@
-#include <gtest/gtest.h>
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch.hpp>
+
+TEST_CASE("Test"){
+
+    REQUIRE(1 == 1);
+
+}
