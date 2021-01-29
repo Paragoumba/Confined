@@ -3,7 +3,7 @@
 #include "Logger.hpp"
 #include "exceptions/Exception.hpp"
 #include "Engine.hpp"
-#include "GameLogic.hpp"
+#include "Game.hpp"
 
 using logger::Logger;
 
@@ -19,7 +19,7 @@ int main(){
 
     try {
 
-        std::shared_ptr<engine::GameLogic> gameLogic = GameLogicPtr(new GameLogic);
+        GameLogicPtr gameLogic(new Game);
 
         Engine engine(gameLogic);
 

@@ -3,16 +3,18 @@
 
 #include <GameLogic.hpp>
 
-class GameLogic : public engine::GameLogic {
+using engine::GameLogic;
+
+class Game : public GameLogic {
 public:
-    GameLogic();
+    Game();
 
     void init() override;
     void input() override;
     void update() override;
     void render() const override;
 
-    ~GameLogic();
+    ~Game();
 };
 
 #endif //CONFINED_GAMELOGIC_HPP
